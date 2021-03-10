@@ -1,0 +1,27 @@
+{% if messages %}
+{% for message in messages %}
+<div class="notification is-danger mx-5">
+    <button class="delete"></button>
+    <strong>
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERRORS %}
+        Yikes
+        {% else %}
+        {{ message.tags | title }}
+        {% endif %}
+    </strong>
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        (document.querySelectorAll('.notification .delete') || []).forEach(($delete) => {
+            const $notification = $delete.parentNode;
+
+            $delete.addEventListener('click', () => {
+                $notification.parentNode.removeChild($notification);
+            });
+        });
+    });
+</script>

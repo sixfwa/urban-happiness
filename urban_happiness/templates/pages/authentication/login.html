@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}
+exponent | login
+{% endblock title %}
+
+{% block content %}
+<div class="columns mt-5">
+    <div class="column"></div>
+    <div class="column">
+        {% include "components/global/_alert.html" %}
+        <form class="box" method="POST" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">username 🔑</label>
+                <div class="control">
+                    <input class="input" type="text" placeholder="username" name="username" required />
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">password 🔒</label>
+                <div class="control">
+                    <input class="input" type="password" placeholder="password" name="password" required />
+                </div>
+            </div>
+
+            <button class="button is-primary"><strong>login 🔓</strong></button>
+        </form>
+
+    </div>
+    <div class="column"></div>
+</div>
+{% endblock content %}

@@ -1,0 +1,50 @@
+<div class="column has-text-centered mx-6">
+    <p id="typedtext" class="is-size-2 mb-6"></p>
+    <a class="button is-link is-light mb-5 has-text-weight-bold">
+        login
+    </a>
+    <h1 class="has-text-weight-bold is-size-3 is-size-4-mobile">
+        A beautiful and minimal way to track your productivity <br>
+        and achieve your goals.
+    </h1>
+    {% include "components/index/_graph_index.html" %}
+</div>
+
+<script>
+    // set up text to print, each item in array is new line
+    var aText = new Array(
+        "exponent"
+    );
+    var iSpeed = 100; // time delay of print out
+    var iIndex = 0; // start printing array at this posision
+    var iArrLength = aText[0].length; // the length of the text array
+    var iScrollAt = 20; // start scrolling up at this many lines
+
+    var iTextPos = 0; // initialise text position
+    var sContents = ''; // initialise contents variable
+    var iRow; // initialise current row
+
+    function typewriter() {
+        sContents = ' ';
+        iRow = Math.max(0, iIndex - iScrollAt);
+        var destination = document.getElementById("typedtext");
+
+        while (iRow < iIndex) {
+            sContents += aText[iRow++] + '<br />';
+        }
+        destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+        if (iTextPos++ == iArrLength) {
+            iTextPos = 0;
+            iIndex++;
+            if (iIndex != aText.length) {
+                iArrLength = aText[iIndex].length;
+                setTimeout("typewriter()", 500);
+            }
+        } else {
+            setTimeout("typewriter()", iSpeed);
+        }
+    }
+
+
+    typewriter();
+</script>
